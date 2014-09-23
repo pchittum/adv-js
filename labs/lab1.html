@@ -5,20 +5,29 @@
 		<title>Contact List Events</title>
 	</head>
 	<body>
-	<ul id="list">
-		
-	</ul>
-	<div>
-		<input name="firstName" />
-		<input name="lastName" />
-		<input name="firstName" />
-		<a href=""></a>
+	<div class="contacts">
+		<input id="first" name="firstName" placeholder="First Name" />
+		<input id="last" name="lastName" placeholder="First Name" />
+		<input id="email" name="email" placeholder="First Name" />
+		<a href="javascript:void(0)">Add Contact</a>
 	</div>
-	<a href=""></a>
-
+	<ul id="list"></ul>
 		<script>
-		// Your JavaScript here
+		var widget = document.querySelector(".contacts");
+		widget.addEventListener("click", function(e){
+			var newContact;
+			var ctStr = widget.querySelector("#first").value + ' ' + widget.querySelector("#last").value + ' ' + widget.querySelector("#email").value ;
+			console.log(ctStr);
 
+			if (e.target.nodeName === 'A'){
+				newContact = document.createElement('li');
+				console.log(newContact);
+				newContact.innerHTML = ctStr;
+				console.log(newContact);
+				document.querySelector("#list").appendChild(newContact);
+			}
+
+		});
 		</script>
 	</body>
 </html>
