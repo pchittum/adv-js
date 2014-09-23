@@ -6,7 +6,7 @@
 	</head>
 	<body>
 	<div class="widget">
-		<a href="javascript:void(0)">Click me!</a>
+		<a href="http://www.google.com">Click me!</a>
 		<input name="anInput" type="text"/>
 		<!--<input id="otherInput" name="otherInput" type="text"/>-->
 	</div>
@@ -17,6 +17,10 @@
 				console.log(theEvent);
 
 				//why am I returning the event? 
+				theEvent.preventDefault();
+				if (theEvent.target.nodeType) {
+					//if I have kind of thing, do this
+				}
 				return theEvent;
 		 	});
 		</script>
