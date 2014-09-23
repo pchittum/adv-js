@@ -5,23 +5,19 @@
 		<title>Events</title>
 	</head>
 	<body>
-	<a href="javascript:void(0)">Click me!</a>
-	<input name="anInput" type="text"/>
-	<input id="otherInput" name="otherInput" type="text"/>
+	<div class="widget">
+		<a href="javascript:void(0)">Click me!</a>
+		<input name="anInput" type="text"/>
+		<!--<input id="otherInput" name="otherInput" type="text"/>-->
+	</div>
 		<script>
-			// querySelector works with any CSS type selector
-			var link = document.querySelector("a");
-			var input = document.querySelector("input");
-			var input2 = document.querySelector("#otherInput")
-		  	link.addEventListener("click",function(theEvent){
+			var widget = document.querySelector(".widget");
+		  	widget.addEventListener("click", function(theEvent){
 				//alert("Yay! you clicked me");
 				console.log(theEvent);
-		 	});
-		 	input.addEventListener("focus", function(theEvent){
-		 		console.log(theEvent);
-		 	});
-		 	input2.addEventListener("focus", function(theEvent){
-		 		console.log(theEvent);
+
+				//why am I returning the event? 
+				return theEvent;
 		 	});
 		</script>
 	</body>
