@@ -5,8 +5,32 @@
 		<title>this</title>
 	</head>
 	<body>
+	<a href="javascript:void(0)">Click</a>
+
 		<script>
-		
+		var contact = {
+			"firstName" : "Peter",
+			printName : function (){
+				console.log(this.firstName);
+			},
+			printNameFixed : function() {
+				var that; 
+				that = this;
+				//because this method returns a function, it will be invoked in the context of it being assignd as an event
+				//handler. at that moment in time. 
+				//this function both executes when invoked (lines 15,16) *and* it then turns around and returns another function
+				//that executes with the context of the invocation. 
+				return function() {
+					console.log(that.firstName);
+				}
+			}
+		};
+		//workaround 
+		//document.querySelector().addEventListener("Click", contact.printNameFixed());
+		//use bind
+		document.querySelector().addEventListener("Click", contact.printName.bind(contact));
+
 		</script>
+
 	</body>
 </html>
