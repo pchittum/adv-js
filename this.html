@@ -19,7 +19,9 @@
 				//because this method returns a function, it will be invoked in the context of it being assignd as an event
 				//handler. at that moment in time. 
 				//this function both executes when invoked (lines 15,16) *and* it then turns around and returns another function
-				//that executes with the context of the invocation. 
+				//that executes with the context of the invocation.
+				//in that instance the function returned executes in the context of the object and freezes the 
+				//value at that moment...basically a closure (I think) 
 				return function() {
 					console.log(that.firstName);
 				}
