@@ -12,16 +12,24 @@
 	</div>
 		<script>
 			var widget = document.querySelector(".widget");
-		  	widget.addEventListener("click", function(theEvent){
+		  	widget.addEventListener("click", function(e){
 				//alert("Yay! you clicked me");
-				console.log(theEvent);
+				var newLink;
+				console.log(e);
 
 				//why am I returning the event? 
-				theEvent.preventDefault();
-				if (theEvent.target.nodeType) {
+				e.preventDefault();
+				if (e.target.nodeName === "A") {
+					console.log("A link was clicked");
+					newLink = document.createElement("a");
+					newLink.innerHTML = widget.querySelector("input").value ? widget.querySelector("input").value : "default";
+					widget.appendChild(newLink);
+
 					//if I have kind of thing, do this
+				} else if (e.target.nodeName === "input"){
+					console.log("I clicked on the input");
 				}
-				return theEvent;
+				return e;
 		 	});
 		</script>
 	</body>
