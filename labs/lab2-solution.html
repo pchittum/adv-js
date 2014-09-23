@@ -1,0 +1,94 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>Contact List Events</title>
+	</head>
+	<body>
+		<div id="widget" class="widget">
+			<ul></ul>
+			<input name="firstName" placeholder="First Name" />
+			<input name="lastName" placeholder="Last Name" />
+			<input name="email" placeholder="Email" />
+			<a href="javascript:void(0);">Add to List</a>
+		</div>
+		<div id="widget2" class="widget">
+			<ul></ul>
+			<input name="firstName" placeholder="First Name" />
+			<input name="lastName" placeholder="Last Name" />
+			<input name="email" placeholder="Email" />
+			<a href="javascript:void(0);">Add to List</a>
+		</div>
+		<script>
+
+		// Modularize contact list to return an object that
+		// has a method to:
+		// 1. init a contact list widget from a DOM node
+		// 2. Has an add method that lets us programmatically add contacts
+		// 3. Has a list method that returns a list of all the contacts
+		// that have been added.
+		(function (W) {
+			"use strict";
+			function getContactFromDom () {
+				var element, firstName, lastName, email;
+				element = this.element;
+				firstName = element.querySelector("[name=firstName]")
+					.value;
+				lastName = element.querySelector("[name=lastName]")
+					.value;
+				email = element.querySelector("[name=email]")
+					.value;
+				return {
+					firstName: firstName,
+					lastName: lastName,
+					email: email
+				};
+			}
+			function renderInDom (contact) {
+				var item, list;
+				list = this.element.querySelector("ul");
+				item = document.createElement("li");
+				item.innerHTML = [
+					contact.firstName, 
+					contact.lastName, 
+					contact.email
+				].join(" ");
+				list.appendChild(item);
+			}
+			function init (el) {
+				var getContact, that;
+				that = this;
+				this.element = el;
+				getContact = getContactFromDom.bind(this);
+				this.element.querySelector("a")
+					.addEventListener("click", function () {
+						that.add(getContact());
+					});
+				return this;
+			}
+			function add (contacts) {
+				return function (contact) {
+					contacts.push(contact);
+					renderInDom.call(this, contact);
+				};
+			}
+			function list (contacts) {
+				return function () {
+					contacts.forEach(console.log.bind(console));
+				};
+			}
+			W.contactList = W.contactList || function () {
+				var contacts;
+				contacts = [];
+				return {
+					init: init,
+					add: add(contacts),
+					list: list(contacts)
+				};
+			};
+		}(window));
+		var list1 = contactList().init(document.getElementById("widget"));
+		var list2 = contactList().init(document.getElementById("widget2"));
+		</script>
+	</body>
+</html>
