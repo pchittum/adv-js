@@ -7,16 +7,17 @@
 	<body>
 	<div class="contacts">
 		<input id="first" name="firstName" placeholder="First Name" />
-		<input id="last" name="lastName" placeholder="First Name" />
-		<input id="email" name="email" placeholder="First Name" />
+		<input id="last" name="lastName" placeholder="Last Name" />
+		<input id="email" name="email" placeholder="Email" />
 		<a href="javascript:void(0)">Add Contact</a>
+		<ul id="list"></ul>
+
 	</div>
-	<ul id="list"></ul>
 		<script>
 		var widget = document.querySelector(".contacts");
 		widget.addEventListener("click", function(e){
 			var newContact;
-			var ctStr = widget.querySelector("#first").value + ' ' + widget.querySelector("#last").value + ' ' + widget.querySelector("#email").value ;
+			var ctStr = widget.querySelector("[name=firstName]").value + ' ' + widget.querySelector("[name=lastName]").value + ' ' + widget.querySelector("[name=email]").value ;
 			console.log(ctStr);
 
 			if (e.target.nodeName === 'A'){
@@ -26,7 +27,11 @@
 				console.log(newContact);
 				document.querySelector("#list").appendChild(newContact);
 			}
-
+			if (e.target.nodeName === 'LI'){
+				console.log('clicked on node');
+				document.querySelector("#list").removeChild(e.target);
+			}
+			return e; 
 		});
 		</script>
 	</body>
