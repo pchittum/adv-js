@@ -9,6 +9,57 @@
 		// http://lostechies.com/derekgreer/2012/02/17/javascript- closures-explained/
 		// http://www.jdl.co.uk/briefings/closures.html
 		// http://mitpress.mit.edu/sicp/full-text/book/book-Z-H-21.html#%_sec_3.2.1
+			var dog = "pug";
+			function foo() {
+				console.log(dog);
+				var cat = "dinner";
+				global = "global";
+				function bar () {
+					console.log(cat);
+				}
+				return bar;
+			};
+			function fooboo() {
+				console.log(dog);
+				var cat = "dinner";
+				global = "global";
+				function bar () {
+					console.log(cat);
+				}
+				return {
+					"bar" : bar
+				};
+			};
+
+			var coolStuff = (function(){
+				//I want a scope that is ringfenced from any other context
+				//I execute some logic (line 37) that contains some important data
+				var pvt, called; 
+				called = 0;
+				pvt = 'super private';
+				//return an object that is created in context of 
+				return {
+					getPrivate : function () {
+						called = called + 1; 
+						return pvt + ' has been called ' + called + ' times.';
+					}
+				};
+			}());
+
+			(function(WIN){
+				//I want a scope that is ringfenced from any other context
+				//I execute some logic (line 37) that contains some important data
+				var pvt, called; 
+				called = 0;
+				pvt = 'super private';
+				//return an object that is created in context of 
+				WIN.privateInjected = {
+					getPrivate : function () {
+						called = called + 1; 
+						return pvt + ' has been called ' + called + ' times.';
+					}
+				};
+			}(window));			
 
 		</script>
 	</body>
