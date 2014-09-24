@@ -10,11 +10,21 @@
 				var deferred;
 				deferred = $q.defer();
 				geo.getCurrentPosition(function (pos) {
+					/*
+					$http({
+						method : 'get',
+						url : buildYLocURL(pos.coords.latitude,pos.coords.longitude)
+					}).then(function(response){
+						deferred.resolve(response);
+					}).catch(function(err){
+						deferred.reject(err);
+					});
+					*/
 					$http.get(buildYLocURL(pos.coords.latitude,pos.coords.longitude))
 						.success(function (data, status, headers, config) {
-								deferred.resolve({
-									data: data
-								});	
+							deferred.resolve({
+								data: data
+							});	
 						});
 				}, function (err) {
 					deferred.reject({
