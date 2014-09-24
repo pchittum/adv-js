@@ -1,6 +1,11 @@
 (function (ng) {
-	function myController ($scope, Contacts) {
+	function myController ($scope, Contacts, Location) {
 		$scope.contacts = [];
+		Location.get()
+			.then(function(response){
+				$scope.longitude = response.data.coords.longitude;
+				$scope.latitude = response.data.coords.latitude;
+			})
 		Contacts.list()
 			.then(function (response) {
 				console.log(arguments);

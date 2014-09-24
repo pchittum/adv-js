@@ -1,9 +1,20 @@
 (function (ng, geo) {
 	"use strict";
-	function location () {
+	function location ($q) {
 		return {
-			get: function(callback) {
-				geo.getCurrentLocation(function(pos){console.log(pos)});
+			get: function() {
+				var deferred;
+				deferred = $q.defer();
+				geo.getCurrentLocation(function(pos){
+					deferred.resolve({
+						data: pos
+					});
+				}, function(err){
+					deferred.reject({
+						data : err
+					});
+				});
+				return deferred.promise;
 			}
 		};
 	}
