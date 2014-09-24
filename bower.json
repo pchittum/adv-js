@@ -1,0 +1,27 @@
+{
+  "name": "adv-js-components",
+  "version": "0.0.0",
+  "authors": [
+    "pchittum <pchittum@salesforce.com>"
+  ],
+  "description": "stuff I'm using for this class",
+  "main": "index.html",
+  "keywords": [
+    "javascript",
+    "training"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery-ui": "~1.11.1",
+    "jquery": "~2.1.1",
+    "angular": "~1.2.25"
+  }
+}
