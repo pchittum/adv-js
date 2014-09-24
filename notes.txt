@@ -1,0 +1,51 @@
+bower
+
+	front end package manager. manages dependencies for projects.
+
+	get your web libs:
+	bower install ...
+		ex: bower install jquery
+
+	make this project one where we manage libs: 
+	bower init
+
+				pchittum-ltm1:adv-js pchittum$ bower init
+				[?] name: adv-js-components
+				[?] version: 0.0.0
+				[?] description: stuff I'm using for this class
+				[?] main file: index.html
+				[?] what types of modules does this package expose? 
+				[?] keywords: javascript, training
+				[?] authors: pchittum <pchittum@salesforce.com>
+				[?] license: MIT
+				[?] homepage: 
+				[?] set currently installed components as dependencies? Yes
+				[?] add commonly ignored files to ignore list? Yes
+				[?] would you like to mark this package as private which prevents it from being accidentally published to the registry? Yes
+
+				{
+				  name: 'adv-js-components',
+				  version: '0.0.0',
+				  authors: [
+				    'pchittum <pchittum@salesforce.com>'
+				  ],
+				  description: 'stuff I\'m using for this class',
+				  main: 'index.html',
+				  keywords: [
+				    'javascript',
+				    'training'
+				  ],
+				  license: 'MIT',
+				  private: true,
+				  ignore: [
+				    '**/.*',
+				    'node_modules',
+				    'bower_components',
+				    'test',
+				    'tests'
+				  ],
+				  dependencies: {
+				    'jquery-ui': '~1.11.1',
+				    jquery: '~2.1.1'
+				  }
+				}

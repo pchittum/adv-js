@@ -1,0 +1,55 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8"/>
+		<title>Angular Example</title>
+		<link src="bower_components/bootstrap-sf1/dist/css/bootstrap.css"/>
+		<script src="bower_components/angular/angular.js"></script>
+			<script type="text/javascript">
+	angular.module("testApp", [], 
+		function(){
+			console.log(arguments);
+			console.log(this);
+		}).controller('testController', ['$scope',function($scope){
+			$scope.thingy = 'Hello';
+			$scope.currentContact = {};
+			$scope.contacts = [];
+			console.log(arguments);
+			console.log(this);
+			console.log($scope);
+			$scope.saveContact = function(){
+
+				console.log($scope.currentContact);
+			};
+		}]);
+	</script>
+	</head>
+	<body data-ng-app="testApp">
+		<div data-ng-controller="testController" class="form panel">
+		<pre>
+			{{currentContact.firstName}}
+			{{currentContact.lastName}}
+			{{currentContact.email}}
+		</pre>
+		<header>
+			<section data-ng-repeat="ct in contacts">
+				<
+			</section>
+		</header>
+			<label class="form-group">
+				<span>First Name</span>
+				<input class="form-control" data-ng-model="currentContact.firstName"/>
+			</label>
+			<label class="form-group">
+				<span>Last Name</span>
+				<input class="form-control" data-ng-model="currentContact.lastName"/>
+			</label>
+			<label class="form-group">
+				<span>Email</span>
+				<input class="form-control" data-ng-model="currentContact.email"/>
+			</label>
+			<button data-ng-click="saveContact()">Save</button>
+		</div>
+	</body>
+
+</html>
