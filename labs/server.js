@@ -2,7 +2,7 @@ var http = require('http');
 var fs = require('fs');
 var svr = http.createServer(function(req, res){
 	console.log(req.url);
-	var file = req.url === '/' ? 'lab3.html' : './'+req.url; 
+	var file = req.url === '/' ? './index.html' : './'+req.url; 
 
 	fs.readFile(file, function(err,data){
 		if (err){
@@ -11,7 +11,7 @@ var svr = http.createServer(function(req, res){
 			return res.end();
 		} else {
 			res.writeHead(200);
-			res.write('Something');
+			res.write(data);
 			return res.end();
 		}
 	});
