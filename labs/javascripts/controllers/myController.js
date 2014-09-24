@@ -1,17 +1,27 @@
 (function (ng) {
 	function myController ($scope, Contacts, Location) {
 		$scope.contacts = [];
+		$scope.errors = [];
+		$scope.latitude = "";
+		$scope.longitude = "";
+		$scope.addy = {};
 		Location.get()
-			.then(function(response){
-				$scope.longitude = response.data.coords.longitude;
-				$scope.latitude = response.data.coords.latitude;
+			.then(function (response) {
+				//$scope.latitude = response.data.coords.latitude;
+				//$scope.longitude = response.data.coords.longitude;
+				$scope.addy = response.data.query.results.Result;
+				console.log($scope.addy);
 			})
+			.catch(function (err) {
+				console.log(err);
+			});
 		Contacts.list()
 			.then(function (response) {
-				console.log(arguments);
+				$scope.contacts = $scope.contacts
+					.concat(response.data);
 			})
-			.error(function () {
-				console.log("error");
+			.catch(function (err) {
+				$scope.errors.push(err.statusText);
 			});
 		$scope.removeContact = function (i) {
 			$scope.contacts.splice(i, 1);

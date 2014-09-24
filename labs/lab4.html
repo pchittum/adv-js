@@ -1,0 +1,101 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>Angular Example</title>
+		<link href="bower_components/bootstrap-sf1/dist/css/bootstrap.css" rel="stylesheet" />
+		<script src="bower_components/angular/angular.js"></script>
+		<script src="javascripts/contactListApp.js"></script>
+		<script src="javascripts/controllers/myController.js"></script>
+		<script src="javascripts/services/contacts.js"></script>
+		<script src="javascripts/services/location.js"></script>
+	</head>
+	<body
+		data-ng-app="comSalesforceExample">
+		<nav
+			class="navbar navbar-default">
+			<ul class="nav navbar-nav">
+				<li>
+					<a href="javascript:void(0);">Home</a>
+				</li>
+			</ul>
+		</nav>
+		<div
+			class="container-fluid"
+			data-ng-controller="MyController">
+			<div class="panel">
+				<div class="panel-body">
+					<span>{{addy.street}}</span>
+					<span>{{addy.city}}</span>
+					<span>{{addy.county}}</span>
+					<span>{{addy.postal}}</span>
+					<span>{{addy.country}}</span>
+				</div>
+			</div>
+			<div
+				data-ng-if="0 < errors.length">
+				<div
+					class="alert alert-danger"
+					data-ng-repeat="error in errors">{{error}}</li>
+				</div>
+			</div>
+			<table
+				class="panel panel-default table table-striped"
+				data-ng-if="0 < contacts.length">
+				<thead>
+					<tr>
+						<th>First Name</th>
+						<th>Last Name</th>
+						<th>Email</th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr
+						data-ng-repeat="contact in contacts">
+						<td>{{contact.firstName}}</td>
+						<td>{{contact.lastName}}</td>
+						<td>{{contact.email}}</td>
+						<td>
+							<a data-ng-click="removeContact($index);">
+								<span class="sr-only">Remove</span>
+								<span class="glyphicon glyphicon-remove"></span>
+							</a>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			<div class="form">
+				<label class="form-group">
+					<span class="sr-only">First Name</span>
+					<input
+						class="form-control"
+						data-ng-model="firstName"
+						placeholder="John" />
+				</label>
+				<label class="form-group">
+					<span class="sr-only">Last Name</span>
+					<input
+						class="form-control"
+						data-ng-model="lastName"
+						placeholder="Doe" />
+				</label>
+				<label class="form-group">
+					<span class="sr-only">Email</span>
+					<input
+						class="form-control"
+						data-ng-model="email"
+						placeholder="john.doe@example.com" />
+				</label>
+				<br />
+				<button
+					class="btn btn-primary"
+					data-ng-disabled="!firstName.length"
+					data-ng-click="saveContact();"
+					type="button">
+					<span>Save Contact</span>
+				</button>
+			</div>
+		</div>
+	</body>
+</html>

@@ -49,3 +49,6 @@ bower
 				    jquery: '~2.1.1'
 				  }
 				}
+
+
+http://query.yahooapis.com/v1/public/yql?q=SELECT%20*%20FROM%20geo.placefinder%20WHERE%20text%3D%2251.433634%2C-0.5210239%22%20AND%20gflags%3D%22R%22&format=json
