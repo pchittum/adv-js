@@ -1,3 +1,6 @@
+angular ui router
+- simplifies more complex routing models
+
 bower
 
 	front end package manager. manages dependencies for projects.
